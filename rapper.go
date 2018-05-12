@@ -3,6 +3,8 @@
 package wackrapper
 
 import (
+	"math"
+
 	"github.com/rs/xid"
 )
 
@@ -20,6 +22,9 @@ func (r *Rapper) Wackness() float64 {
 		total += v.wackness
 	}
 	wack := total / float64(len(r.lyrics))
+	if math.IsNaN(wack) {
+		return 0
+	}
 	return wack
 }
 

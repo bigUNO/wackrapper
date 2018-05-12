@@ -10,3 +10,5 @@ type lyric struct {
 type verse struct {
 	line []string
 }
+
+// TODO: youtube link in lyric struct
