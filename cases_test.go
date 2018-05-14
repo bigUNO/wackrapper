@@ -7,7 +7,20 @@ var id = xid.ID{0x4d, 0x88, 0xe1, 0x5b, 0x60, 0xf4, 0x86, 0xe4, 0x28, 0x41, 0x2d
 var testLyrics = []struct {
 	description string
 	lyric       lyric
+	judge       []int
 }{
+	{
+		"invisible lyric",
+		lyric{
+			1,
+			"The song that doesn't exist",
+			verse{
+				[]string{""},
+			},
+			0,
+		},
+		[]int{666, 0},
+	},
 	{
 		"single-verse lyric",
 		lyric{
@@ -18,6 +31,7 @@ var testLyrics = []struct {
 			},
 			0,
 		},
+		[]int{1, 1},
 	},
 	{
 		"multi-verse lyrics",
@@ -32,6 +46,7 @@ var testLyrics = []struct {
 			},
 			23,
 		},
+		[]int{-1, 22},
 	},
 }
 

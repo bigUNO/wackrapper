@@ -17,6 +17,8 @@ type Rapper struct {
 	lyrics   []lyric
 }
 
+// Wackness returns the average of a rapper's
+// wack lines
 func (r Rapper) Wackness() float64 {
 	var total float64 = 0
 	for _, v := range r.lyrics {
@@ -38,12 +40,6 @@ func New() Rapper {
 // of wackness. The first rapper is the wackest in
 // the group.
 func Rank(rr []Rapper) []string {
-
-	type ranking struct {
-		name     string
-		wackness float64
-	}
-
 	switch len(rr) {
 	case 0:
 		return []string{}
