@@ -3,7 +3,6 @@
 package wackrapper
 
 import (
-	"fmt"
 	"math"
 	"sort"
 
@@ -60,37 +59,22 @@ func Rank(rr []Rapper) []string {
 		for i := range m {
 			keys = append(keys, m[i].Wackness())
 		}
-		// Sort slice
-		//sort.Sort(sort.Reverse(sort.Float64Slice(keys)))
-		//orderedKeys := make([]float64, len(keys))
-		//for i, j := 0, len(keys)-1; i < j; i, j = i+1, j-1 {
-		//orderedKeys[i], orderedKeys[j] = keys[j], keys[i]
-		//}
-		for i := len(keys)/2 - 1; i >= 0; i-- {
-			opp := len(keys) - 1 - i
-			keys[i], keys[opp] = keys[opp], keys[i]
-		}
+
+		// Sort the slice
 		sort.Sort(sort.Reverse(sort.Float64Slice(keys)))
-		fmt.Printf("%v\n", keys)
+
 		// Build slice of strings based on map now that
 		// values are in order
 		ss := []string{}
 		for k := range keys {
 			ss = append(ss, m[k].name)
 		}
-		fmt.Printf("%v\n", ss)
-		/*
-			rr := []ranking{}
-			for k := range keys {
-				rr = append(rr, ranking{m[k].name, m[k].Wackness()})
-			}
 
-			ss := []string{}
-			for _, v := range rr {
-				//ss = append(ss, v.name, strconv.FormatFloat(v.wackness, 'f', 2, 64))
-				ss = append(ss, v.name)
-			}*/
-
+		// Reverse the slice
+		for i := len(ss)/2 - 1; i >= 0; i-- {
+			opp := len(ss) - 1 - i
+			ss[i], ss[opp] = ss[opp], ss[i]
+		}
 		return ss
 	}
 
